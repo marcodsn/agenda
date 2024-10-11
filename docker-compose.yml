@@ -5,7 +5,6 @@ services:
       - "3000:3012"
     env_file:
       - .env
-      - .env.local
     environment:
       - NODE_ENV=production
       - DB_HOST=${DB_HOST}
@@ -14,15 +13,14 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
     depends_on:
-      - db
+      - agenda-db
 
-  agena-db:
+  agenda-db:
     image: postgres:17.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
-      - .env.local
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
