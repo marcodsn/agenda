@@ -4,15 +4,20 @@
   "description": "Tasks management system with automatic scheduling and rescheduling",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npm run typeorm migration:generate -- -d src/database/data-source.ts",
+    "migration:run": "npm run typeorm migration:run -- -d src/database/data-source.ts"
   },
   "keywords": [],
   "author": "Marco De Santis",
   "license": "MIT",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.5",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
@@ -22,6 +27,11 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "express": "^4.21.1"
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "pg": "^8.13.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   }
 }

@@ -1,14 +1,20 @@
-// Hello world! server.ts
+import 'reflect-metadata';
+import { AppDataSource } from './database/dataSource';
+import app from './app';
 
-import express from 'express';
+const PORT = process.env.PORT || 3000;
 
-const app = express();
-const port = 3000;
+async function startServer() {
+  try {
+    await AppDataSource.initialize();
+    console.log('Data Source has been initialized!');
 
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error during Data Source initialization', error);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+startServer();
