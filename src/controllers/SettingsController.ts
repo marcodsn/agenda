@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from '../database/dataSource';
 import { Setting } from '../entities/Setting';
+import { Repository } from 'typeorm';
 
-const settingsRepository = AppDataSource.getRepository(Setting);
+const settingsRepository: Repository<Setting> = AppDataSource.getRepository(Setting);
 
 export class SettingsController {
     static async getAll(req: Request, res: Response) {

@@ -2,7 +2,7 @@ services:
   agenda-api:
     build: .
     ports:
-      - "3000:3012"
+      - "3012:3000"
     env_file:
       - .env
     environment:

@@ -9,7 +9,12 @@ import schedulesRoutes from './routes/schedulesRoutes';
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    // origin: process.env.CORS_ORIGIN,
+    origin: '*',  // Allow all origins for now
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
+}));
 app.use(helmet());
 app.use(express.json());
 app.use(authMiddleware);
