@@ -101,6 +101,12 @@ export class Task {
     @Column({ type: 'time', nullable: true })
     preferredTime?: string; // e.g., '14:00'
 
+    @Column({ length: 7, default: '#A8D8FF' })
+    color: string;
+
+    @Column({ type: 'text', nullable: true })
+    notes?: string | null;
+
     @CreateDateColumn()
     createdAt: Date;
 
@@ -114,6 +120,7 @@ export class Task {
         type: string,
         category: 'one-time' | 'recurring' | 'floating',
         timeOfDayPreference: 'morning' | 'afternoon' | 'evening' | 'preferred_time',
+        color: string = '#A8D8FF'
     ) {
         this.title = title;
         this.estimatedDuration = estimatedDuration;
@@ -121,6 +128,7 @@ export class Task {
         this.type = type;
         this.category = category;
         this.timeOfDayPreference = timeOfDayPreference;
+        this.color = color;
         this.createdAt = new Date();
         this.updatedAt = new Date();
 
